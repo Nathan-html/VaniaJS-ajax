@@ -27,7 +27,7 @@ document.getElementById('run').addEventListener("click", () => {
             let UL = document.createElement("ul");
             for (const data of datas) {
                 const LI = document.createElement("li");
-                const liText = document.createTextNode(`${data.firstName} - ${data.phone}`);
+                const liText = document.createTextNode(`Prénom : ${data.firstName} - Téléphone : ${data.phone}`);
                 LI.appendChild(liText);
                 UL.appendChild(LI);
             }
@@ -36,7 +36,12 @@ document.getElementById('run').addEventListener("click", () => {
         .catch(error => alert("error : " + error));
     }
     if (getHtmlMovies) {
-        console.log("getHtmlMovies");
+        fetch("http://127.0.0.1:5500/ajax/data/3-get-html-movies.html")
+        .then(response => response.text())
+        .then(datas => {
+            target.innerHTML = datas;
+        })
+        .catch(error => alert("error : " + error));
     }
     if (getJsonMovies) {
         console.log("getJsonMovies");
